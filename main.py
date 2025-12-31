@@ -19,7 +19,11 @@ image = (modal.Image.debian_slim()
          .apt_install(["libsndfile1"])
          .add_local_python_source("model"))
 
-model_volume = modal.Volume.from_name("esc-model")
+model_volume = modal.Volume.from_name(
+    "esc-model",
+    create_if_missing=True
+)
+
 
 
 class AudioProcessor:
@@ -158,8 +162,8 @@ def main():
     if waveform_info:
         values = waveform_info.get("values", {})
         print(f"First 10 values: {[round(v, 4) for v in values[:10]]}...")
-        print(f"Duration: {waveform_info.get("duration", 0)}")
+        print(f"Duration: {waveform_info.get('duration', 0)}")
 
     print("Top predictions:")
     for pred in result.get("predictions", []):
-        print(f"  -{pred["class"]} {pred["confidence"]:0.2%}")
+        print(f"  -{pred['class']} {pred['confidence']:0.2%}")

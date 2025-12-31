@@ -1,0 +1,10 @@
+numpy
+pandas
+torch
+torchaudio
+tqdm
+tensorboard
+fastapi
+librosa
+pydantic
+soundfile
