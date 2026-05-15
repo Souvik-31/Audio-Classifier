@@ -1,29 +1,47 @@
-# Create T3 App
+# Audio Classifier Dashboard
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+The frontend for the Audio Classifier project, built with the [T3 Stack](https://create.t3.gg/) (Next.js, TypeScript, Tailwind CSS).
 
-## What's next? How do I make an app with this?
+## Features
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+- **Audio Upload**: Drag and drop or select audio files for classification.
+- **Waveform Visualization**: Interactive view of the raw audio signal.
+- **Spectrogram View**: Visual representation of the audio frequencies over time.
+- **Feature Map Exploration**: Deep dive into the CNN's internal activations.
+- **Confidence Scores**: Real-time predictions from the PyTorch model.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Getting Started
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+### Prerequisites
+
+- Node.js (Latest LTS recommended)
+- npm or yarn
+
+### Installation
+
+```bash
+npm install
+```
+
+### Development
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to see the dashboard.
+
+## Configuration
+
+The frontend communicates with the backend API (deployed on Modal or running locally). Ensure the API endpoint is correctly configured in your environment if necessary.
+
+## Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com)
+- **UI Components**: [Shadcn UI](https://ui.shadcn.com)
+- **Language**: [TypeScript](https://www.typescriptlang.org)
 
 ## Learn More
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
-
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+This dashboard is part of the [Audio-Classifier](..) project. Refer to the root README for backend and training instructions.
