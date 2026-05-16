@@ -105,9 +105,7 @@ function splitLayers(visualization: VisualizationData) {
 
       if (!parent) continue;
 
-      if (!internals[parent]) {
-        internals[parent] = [];
-      }
+      internals[parent] ??= [];
 
       internals[parent].push([name, data]);
     }
