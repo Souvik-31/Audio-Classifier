@@ -2,9 +2,11 @@ numpy
 pandas
 torch
 torchaudio
+torchcodec
 tqdm
 tensorboard
 fastapi
 librosa
 pydantic
 soundfile
+pytest
