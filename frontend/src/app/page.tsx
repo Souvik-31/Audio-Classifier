@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import ColorScale from "~/components/ColorScale";
 import FeatureMap from "~/components/FeatureMap";
@@ -21,9 +20,7 @@ interface LayerData {
   values: number[][];
 }
 
-interface VisualizationData {
-  [layerName: string]: LayerData;
-}
+type VisualizationData = Record<string, LayerData>;
 
 interface WaveformData {
   values: number[];
@@ -92,7 +89,7 @@ const ESC50_EMOJI_MAP: Record<string, string> = {
 };
 
 const getEmojiForClass = (className: string) =>
-  ESC50_EMOJI_MAP[className] || "🔈";
+  ESC50_EMOJI_MAP[className] ?? "🔈";
 
 
 function splitLayers(visualization: VisualizationData) {
@@ -106,7 +103,7 @@ function splitLayers(visualization: VisualizationData) {
       const parts = name.split(".");
       const parent = parts[0];
 
-      if (!parent) continue; // 🔑 type guard
+      if (!parent) continue;
 
       if (!internals[parent]) {
         internals[parent] = [];
@@ -149,14 +146,15 @@ export default function HomePage() {
           ),
         );
 
-        const response = await fetch(process.env.NEXT_PUBLIC_API_URL || "", {
+        const response = await fetch(env.NEXT_PUBLIC_API_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ audio_data: base64String }),
         });
 
         if (!response.ok) throw new Error(response.statusText);
-        setVizData(await response.json());
+        const data = await response.json() as ApiResponse;
+        setVizData(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Unknown error");
       } finally {

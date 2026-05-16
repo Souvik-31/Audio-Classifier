@@ -14,7 +14,7 @@ const FeatureMap = ({
   if (!data || !data.length || !data[0]?.length) return null;
 
   const mapHeight = data.length;
-  const mapWidth = data[0].length;
+  const mapWidth = data[0]?.length ?? 0;
 
   const absMax = data
     .flat()
