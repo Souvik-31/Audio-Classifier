@@ -161,6 +161,39 @@ export default function HomePage() {
     };
   };
 
+  const handleDemoClick = async (demoName: string) => {
+    setFileName(demoName);
+    setIsLoading(true);
+    setError(null);
+    setVizData(null);
+
+    try {
+      const res = await fetch(`/demos/${demoName}`);
+      if (!res.ok) throw new Error("Failed to load demo");
+      const arrayBuffer = await res.arrayBuffer();
+      const base64String = btoa(
+        new Uint8Array(arrayBuffer).reduce(
+          (data, byte) => data + String.fromCharCode(byte),
+          "",
+        ),
+      );
+
+      const response = await fetch(env.NEXT_PUBLIC_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ audio_data: base64String }),
+      });
+
+      if (!response.ok) throw new Error(response.statusText);
+      const data = (await response.json()) as ApiResponse;
+      setVizData(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unknown error");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const { main, internals } = vizData
     ? splitLayers(vizData.visualization)
     : { main: [], internals: {} };
@@ -209,6 +242,28 @@ export default function HomePage() {
                 {fileName}
               </Badge>
             )}
+
+            <div className="mt-8 flex flex-col items-center space-y-3">
+              <p className="text-sm text-stone-500">Or try a demo:</p>
+              <div className="flex gap-4">
+                <Button
+                  variant="outline"
+                  onClick={() => handleDemoClick("1-100032-A-0.wav")}
+                  disabled={isLoading}
+                  className="border-[#6B1D1D]/20 text-[#6B1D1D] hover:bg-[#E8D6D0] hover:text-[#4A1212]"
+                >
+                  🐕 Dog Barking
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => handleDemoClick("1-172649-F-40.wav")}
+                  disabled={isLoading}
+                  className="border-[#6B1D1D]/20 text-[#6B1D1D] hover:bg-[#E8D6D0] hover:text-[#4A1212]"
+                >
+                  🚁 Helicopter
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
 
