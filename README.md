@@ -6,6 +6,13 @@ The backend is powered by PyTorch and can be deployed on [Modal](https://modal.c
 - **Primary languages**: Python, TypeScript
 - **Use cases**: Environmental sound classification, speech command detection, bird call classification, and other audio-labeling tasks.
 
+<img width="1801" height="823" alt="Screenshot 2026-08-25 014904" src="https://github.com/user-attachments/assets/d1c67c7e-a257-4aee-a20b-4dfc756286f1" />
+<img width="1745" height="657" alt="Screenshot 2026-08-25 014917" src="https://github.com/user-attachments/assets/21300d00-5993-4794-a3d9-f0eb732a777a" />
+<img width="1796" height="837" alt="Screenshot 2026-08-25 014924" src="https://github.com/user-attachments/assets/c3eccc91-4fb4-47e9-96c4-1b601037f049" />
+
+
+
+
 ## Overview
 
 This project demonstrates a complete machine learning pipeline:
